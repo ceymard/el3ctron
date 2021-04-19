@@ -1,7 +1,10 @@
 @use "./reset"
 
+input, textarea, select
+  outline: 0
+
 $background: #3c3c4b
-$tint: #004e7c
+$tint: #334e7c
 // $tint: #ff9988
 $fg: white
 $padding: 0 8px
@@ -27,7 +30,7 @@ html, body, .bar, .dialog
   .entries
     flex-grow: 1
     flex-basis: 0
-    overflow-y: scroll
+    overflow-y: auto
 
   .text
     padding: 8px 16px
@@ -126,5 +129,7 @@ html, body, .bar, .dialog
     // font-weight: bold
     background: $tint
 
-.date
+.widget
   padding: 0 8px
+
+// .date

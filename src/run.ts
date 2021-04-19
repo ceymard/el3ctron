@@ -1,6 +1,8 @@
 #!/usr/bin/env electron
 import { app, BrowserWindow, ipcMain } from 'electron'
 import * as path from 'path'
+import * as si from 'systeminformation'
+
 
 let win!: BrowserWindow
 // console.log(app, BrowserWindow, require('electron'))
@@ -35,13 +37,20 @@ function createWindow () {
     type: 'dock',
     show: false,
     webPreferences: {
-      // webSecurity: false,
       nativeWindowOpen: true,
       preload: path.join(__dirname, 'preload.js'),
-      // nodeIntegration: false,
-      // nodeIntegrationInSubFrames: false,
-      // contextIsolation: true,
     }
+  })
+
+  // si.baseboard
+  si.observe({
+    cpuTemperature: 'main',
+    cpuCurrentSpeed: 'avg',
+    battery: 'percent,timeRemaining',
+    networkStats: 'iface,tx_bytes,rx_bytes,rx_sec,tx_sec',
+  }, 5000, data => {
+    // console.log(data)
+    win?.webContents.send('stats', data)
   })
 
   win.on('ready-to-show', () => {
@@ -51,7 +60,6 @@ function createWindow () {
   })
 
   win.webContents.setWindowOpenHandler(details => {
-    console.log('sdfjnsdfnj')
     return {
       action: 'allow',
       overrideBrowserWindowOptions: {

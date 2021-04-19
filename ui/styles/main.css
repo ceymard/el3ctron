@@ -46,6 +46,10 @@ input {
   border-radius: 0;
 }
 
+input, textarea, select {
+  outline: 0;
+}
+
 html, body, .bar, .dialog {
   width: 100vw;
   height: 100vh;
@@ -68,7 +72,7 @@ html, body, .bar, .dialog {
 .dialog .entries {
   flex-grow: 1;
   flex-basis: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .dialog .text {
   padding: 8px 16px;
@@ -78,7 +82,7 @@ html, body, .bar, .dialog {
   padding: 8px 16px;
 }
 .dialog .entry.selected {
-  background: #004e7c;
+  background: #334e7c;
 }
 .dialog input {
   border: none;
@@ -103,7 +107,7 @@ html, body, .bar, .dialog {
   position: relative;
   height: 100vh;
   padding: 2px 8px;
-  background: #002e49;
+  background: #243758;
   font-family: "Ubuntu Mono", monospace;
 }
 .workspace-list > .group-name {
@@ -130,7 +134,7 @@ html, body, .bar, .dialog {
   margin-left: 4px;
 }
 .workspace.visible {
-  background: #004e7c;
+  background: #334e7c;
 }
 
 .windows {
@@ -162,10 +166,10 @@ html, body, .bar, .dialog {
   content: ")";
 }
 .window.focused {
-  background: #004e7c;
+  background: #334e7c;
 }
 
-.date {
+.widget {
   padding: 0 8px;
 }
 

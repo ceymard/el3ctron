@@ -17,7 +17,7 @@ export function query(opts?: {
     current_window.close()
   }
   current_window = w
-  console.log(w)
+  // console.log(w)
 
   w.addEventListener('close', () => {
     current_window = null

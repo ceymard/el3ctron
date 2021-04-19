@@ -2,10 +2,36 @@ import './immerize'
 
 import { I } from 'elt-fa'
 import 'elt-fa/calendar-alt-regular'
+import 'elt-fa/battery-three-quarters-solid'
+import 'elt-fa/microchip-solid'
+import 'elt-fa/thermometer-full-solid'
+import 'elt-fa/arrow-down-solid'
+import 'elt-fa/arrow-up-solid'
 
-import { $click, o, Repeat, setup_mutation_observer } from 'elt'
+import { $click, If, o, Repeat, setup_mutation_observer } from 'elt'
 
 import { i3 } from './i3'
+
+let pct = Intl.NumberFormat('us', {style: 'percent'})
+let kb = Intl.NumberFormat('us', { style: 'unit', unit: 'kilobyte', maximumFractionDigits: 1 })
+
+const o_stats = o({} as {
+  battery?: { percent: number, timeRemaining: number | null },
+  cpuTemperature?: { main: number },
+  cpuCurrentSpeed?: { avg: number },
+  networkStats?: {
+    iface: string,
+    tx_bytes: number,
+    rx_bytes: number,
+    tx_sec: number,
+    rx_sec: number,
+  }[]
+})
+
+window.api.receive('stats', stats => {
+  o_stats.set(stats)
+  // console.log(stats)
+})
 
 window.api.receive('i3', (kind, payload) => {
   i3.handleI3Msg(kind, payload)
@@ -117,7 +143,25 @@ function init() {
         return w?.name ?? '-'
       })} » */}
     {/* <img src="file:///home/chris/swapp/apps/1811-ipsen-engagements/__dist__/client/android-icon-144x144.png" width="32" height="32"></img> */}
-    <div class='date'>
+    {If(o_stats.p('networkStats'), o_networks => <div class='widget stat'>
+      {Repeat(o_networks, o_net => <span>{o_net.p('iface')} {I('arrow-down')} {o_net.tf(n => kb.format(n.rx_sec))} {I('arrow-up')} {o_net.tf(n => kb.format(n.tx_sec))}</span>)}
+    </div>)}
+    {If(o_stats.p('cpuTemperature'), o_temp => <div class='widget stat'>
+      {I('thermometer-full')}
+      {' '}
+      {o_temp.p('main')}°
+    </div>)}
+    {If(o_stats.p('cpuCurrentSpeed'), o_speed => <div class='widget stat'>
+      {I('microchip')}
+      {' '}
+      {o_speed.p('avg')}
+    </div>)}
+    {If(o_stats.p('battery'), o_bat => <div class='widget stat'>
+      {I('battery-three-quarters')}
+      {' '}
+      {o_bat.tf(b => pct.format(b.percent/100))}
+    </div>)}
+    <div class='widget date'>
       {I('calendar-alt-regular')}
       {' '}
       {o_time.tf(t => dt.format(t))}</div>
