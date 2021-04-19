@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "outDir": "./lib",
+        "rootDir": "./src",
+        // "allowSyntheticDefaultImports": true,
+        "jsx": "react",
+        "jsxFactory": "E",
+        "jsxFragmentFactory": "E.Fragment",
+        "experimentalDecorators": true,
+        "lib": ["es2017", "dom"],
+        "types": ["node"]
+    },
+    "include": ["src/**/*"]
+}
