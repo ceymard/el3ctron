@@ -349,7 +349,7 @@ export class I3Cmd {
     window.api.send('i3', {kind: 'tree'})
   }, 5)
 
-  handleI3Msg(kind: string, msg: any) {
+  handleI3Msg(kind: string, msg: any, err?: any) {
     if (!msg) return
     if (kind === 'tree') {
       this.update_tree(msg)
@@ -370,6 +370,8 @@ export class I3Cmd {
       this.upd()
     } else if (kind === 'reset') {
       this.upd()
+    } else if (kind === 'reply') {
+      console.log(kind, msg, err)
     }
   }
 

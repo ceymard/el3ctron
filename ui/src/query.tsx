@@ -49,8 +49,8 @@ export function query(opts?: {
   if (doc) {
     setup_mutation_observer(doc)
     doc.head.appendChild(<link rel="stylesheet" href={link.href}/>)
-    doc.body.classList.add('dialog')
-    doc.body.appendChild(<>
+    // doc.body.classList.add('dialog')
+    doc.body.appendChild(<div class='dialog'>
       {If(opts?.title, o_title => <h1>{o_title}</h1>)}
       {If(opts?.text, o_text => <div class="text">{o_text}</div>)}
       <input class='main_input'>
@@ -78,7 +78,7 @@ export function query(opts?: {
           {o_item}
         </div>)}
       </div>)}
-    </>)
+    </div>)
     doc.addEventListener('keydown', k => {
       // w.__rpc('keydown-popup', {})
       let sel = o_selected.get()

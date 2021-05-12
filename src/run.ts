@@ -15,9 +15,9 @@ ipcMain.on('i3', (data, msg) => {
     })
   } else if (msg.kind === 'cmd') {
     // console.log()
-    i3.command(msg.cmd, (err, res) => {
+    i3.command(msg.cmd, (err: any, res: any) => {
       // console.log(err, res)
-      data.reply('i3', '')
+      data.reply('i3', 'reply', res, err)
     })
   }
 })
@@ -32,7 +32,7 @@ function createWindow () {
     transparent: true,
     frame: false,
     title: '3lectron',
-    // backgroundColor: '#00ffffff',
+    resizable: false,
     autoHideMenuBar: true,
     type: 'dock',
     show: false,
@@ -64,10 +64,16 @@ function createWindow () {
       action: 'allow',
       overrideBrowserWindowOptions: {
         type: 'dialog',
+        transparent: true,
+        frame: false,
         width: 800,
         height: 600,
       }
     }
+  })
+
+  win.webContents.on('did-create-window', ev => {
+    if (process.env.DEBUG) ev.webContents.openDevTools({mode: 'bottom'})
   })
 
   win.setBounds({
@@ -88,7 +94,7 @@ app.on('window-all-closed', () => {
 
 let i3: any = null
 function makeI3Client() {
-  i3 = require('i3').createClient()
+  i3 = require('i3').createClient({path: process.env.I3SOCK})
 
   i3.on('error', (er: any) => {
     console.error(er)

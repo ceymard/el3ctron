@@ -57,7 +57,7 @@ html, body, .bar, .dialog {
   font-family: Ubuntu, sans-serif;
 }
 
-.dialog, .bar {
+.bar, .dialog {
   color: white;
   background: #3c3c4b;
 }
@@ -65,7 +65,7 @@ html, body, .bar, .dialog {
 .dialog {
   font-size: 16px;
   border: 2px solid #84849c;
-  border-radius: 3px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -103,7 +103,7 @@ html, body, .bar, .dialog {
 .workspace-list {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   position: relative;
   height: 100vh;
   padding: 2px 8px;
@@ -113,9 +113,9 @@ html, body, .bar, .dialog {
 .workspace-list > .group-name {
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 0.6em;
-  height: 80vh;
-  line-height: 80vh;
+  font-size: 0.75em;
+  height: 100vh;
+  line-height: 100vh;
   margin-right: 4px;
 }
 
@@ -170,6 +170,7 @@ html, body, .bar, .dialog {
 }
 
 .widget {
+  font-size: 0.8em;
   padding: 0 8px;
 }
 

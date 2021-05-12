@@ -144,7 +144,7 @@ function init() {
       })} » */}
     {/* <img src="file:///home/chris/swapp/apps/1811-ipsen-engagements/__dist__/client/android-icon-144x144.png" width="32" height="32"></img> */}
     {If(o_stats.p('networkStats'), o_networks => <div class='widget stat'>
-      {Repeat(o_networks, o_net => <span>{o_net.p('iface')} {I('arrow-down')} {o_net.tf(n => kb.format(n.rx_sec))} {I('arrow-up')} {o_net.tf(n => kb.format(n.tx_sec))}</span>)}
+      {Repeat(o_networks, o_net => <span>{o_net.p('iface')} {I('arrow-down')} {o_net.tf(n => kb.format(n.rx_sec/1024))} {I('arrow-up')} {o_net.tf(n => kb.format(n.tx_sec/1024))}</span>)}
     </div>)}
     {If(o_stats.p('cpuTemperature'), o_temp => <div class='widget stat'>
       {I('thermometer-full')}

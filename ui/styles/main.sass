@@ -15,7 +15,7 @@ html, body, .bar, .dialog
   font-size: 50vh
   font-family: Ubuntu, sans-serif
 
-.dialog, .bar
+.bar, .dialog
   color: $fg
   background: $background
 
@@ -23,7 +23,7 @@ html, body, .bar, .dialog
   font-size: 16px
   // padding: 16px
   border: 2px solid lighten($background, 30)
-  border-radius: 3px
+  border-radius: 10px
   display: flex
   flex-direction: column
 
@@ -64,7 +64,7 @@ html, body, .bar, .dialog
 .workspace-list
   display: flex
   flex-direction: row
-  align-items: baseline
+  align-items: center
   position: relative
   height: 100vh
   padding: 2px 8px
@@ -74,9 +74,10 @@ html, body, .bar, .dialog
   & > .group-name
     font-weight: bold
     text-transform: uppercase
-    font-size: 0.6em
-    height: 80vh
-    line-height: 80vh
+    font-size: 0.75em
+    height: 100vh
+    // align-self: baseline
+    line-height: 100vh
     margin-right: 4px
 
 .workspace
@@ -130,6 +131,8 @@ html, body, .bar, .dialog
     background: $tint
 
 .widget
+  font-size: 0.8em
+  // font-family: "Ubuntu Mono", monospace
   padding: 0 8px
 
 // .date

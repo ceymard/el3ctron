@@ -1,7 +1,17 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
+function read_desktop_entry(contents: string) {
+
+}
+
+// Get the icon path for an icon name
+function get_icon_path(name: string) {
+
+}
+
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
+contextBridge.exposeInMainWorld('fs', require('fs'))
 contextBridge.exposeInMainWorld(
   "api", {
       send: (channel: string, data: any) => {
