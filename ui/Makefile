@@ -1,7 +1,7 @@
 color=$(shell echo "\033[0;32m")
 reset=$(shell echo "\033[0m")
 
-FLAGS = --bundle --error-limit=0 --platform=browser --target=es2017 --define:'process.env.NODE_ENV="production"'
+FLAGS = --bundle --platform=browser --target=es2017 --define:'process.env.NODE_ENV="production"'
 
 .PHONY: all clean appjs appjsminified appjswatch sass
 
@@ -21,7 +21,7 @@ clean:
 
 # Pour un build de dev
 appjs:
-	esbuild $(FLAGS) --sourcemap --outfile=lib/app.js src/main.tsx
+	../node_modules/.bin/esbuild $(FLAGS) --sourcemap --outfile=lib/app.js src/main.tsx
 	echo app.js rebuilt.
 
 # Pour le build docker

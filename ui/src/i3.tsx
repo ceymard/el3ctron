@@ -141,6 +141,7 @@ export class I3Cmd {
   readonly o_current_windows = o.join(this.o_i3_nodes).tf(([nodes]) => {
     let res: ConApp[] = []
     for (let node of nodes.values()) {
+      // console.log(node)
       if (node.visible && node.window && node.type === 'con') {
         res.push(node as ConApp)
       }
